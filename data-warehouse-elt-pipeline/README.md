@@ -6,3 +6,15 @@ Data engineering project that implements an ELT (extract-transform-load) data pi
 
 [SOURCE] -> [INGESTION] -> [RAW DATA] -> [STAGING] -> [INTERMEDIATE] -> [MARTS] -> [BI]
 
+```
+├── README.md
+├── .gitignore
+├── requirements.txt
+│
+├── infrastructure/          # (opcional) setup DB, docker, etc.
+│   ├── docker/
+│   │   ├── docker-compose.yml
+│   │   └── airflow.Dockerfile 
+│   └── sql/
+        └── init.sql
+```
