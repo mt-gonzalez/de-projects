@@ -1,0 +1,11 @@
+name: pipeline_env
+channels:
+  - defaults
+dependencies:
+   - python=3.10
+   - pandas
+   - requests
+   - pip
+   - pip:
+     - kaggle
+     - python-dotenv
