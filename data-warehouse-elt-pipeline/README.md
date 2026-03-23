@@ -16,5 +16,12 @@ Data engineering project that implements an ELT (extract-transform-load) data pi
 │   │   ├── docker-compose.yml
 │   │   └── airflow.Dockerfile 
 │   └── sql/
-        └── init.sql
+│       └── init.sql
+│
+├── ingestion/
+│   ├── sources/
+│   │   └── download_data.py  # Script to get the data
+│   │   └── events.csv  # CSV source file
+│   ├── loaders/
+│   └── pipelines/
 ```
