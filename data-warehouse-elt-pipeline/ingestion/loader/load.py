@@ -67,7 +67,7 @@ def validate(conn):
     with conn.cursor() as cur:
         cur.execute("SELECT COUNT(*) FROM raw.events;")
         count = cur.fetchone()[0]
-        print(f"✅ Rows in raw.events: {count}")
+        print(f"Rows in raw.events: {count}")
 
 # --- Main ---
 def main():
@@ -90,10 +90,10 @@ def main():
         print("Validating load...")
         validate(conn)
 
-        print("✅ Load completed successfully")
+        print("Load completed successfully")
 
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         conn.rollback()
 
     finally:
