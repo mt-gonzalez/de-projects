@@ -32,6 +32,21 @@ ps:
 .PHONY: restart
 restart: down up
 	@echo "Project restarted."
+
+.PHONY: dbt_debug
+dbt_debug:
+	@echo "Show information on the current dbt environment..."
+	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt debug
+
+.PHONY: dbt_run
+dbt_run:
+	@echo "Compile SQL and execute against the current target..."
+	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt run
+
+.PHONY: dbt_source_freshness
+dbt_source_freshness:
+	@echo "Check the current freshness of the project's sources..."
+	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt source freshness
 	
 .PHONY: help
 help:
