@@ -1,0 +1,16 @@
+name: elt-transform
+version: 1.0
+profile: my_project
+
+models:
+  my_project:
+    staging:
+      schema: staging           # modelos staging
+    intermediate:
+      schema: intermediate     # modelos intermediate
+    core:
+      schema: marts_core        # fact + dim tables
+    finance:
+      schema: marts_finance     # data marts financieros
+    marketing:
+      schema: marts_marketing   # data marts marketing
