@@ -12,5 +12,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
       
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
+    container_name: dbt_service
+    working_dir: /usr/app
+    volumes:
+      - ../warehouse:/usr/app
+      - ../warehouse/.dbt/profile.yaml:~/.dbt/profile.yaml
+    depends_on:
+      - db
+
 volumes:
   postgres_data:
+
