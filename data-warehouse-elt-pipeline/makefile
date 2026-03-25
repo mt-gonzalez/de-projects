@@ -2,6 +2,8 @@ DOCKER_COMPOSE_FILE := infrastructure/docker-compose.yaml
 
 ENV_FILE := .env
 
+DBT := docker compose --env-file .env -f infrastructure/docker-compose.yaml run --rm dbt
+
 .DEFAULT_GOAL := help
 
 .PHONY: up
@@ -33,20 +35,23 @@ ps:
 restart: down up
 	@echo "Project restarted."
 
-.PHONY: dbt_debug
 dbt_debug:
 	@echo "Show information on the current dbt environment..."
-	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt debug
+	$(DBT) debug
 
-.PHONY: dbt_run
+dbt_compile:
+	$(DBT) compile
+
 dbt_run:
 	@echo "Compile SQL and execute against the current target..."
-	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt run
+	$(DBT) run
 
-.PHONY: dbt_source_freshness
+run-model:
+	$(DBT) run -s $(m)
+
 dbt_source_freshness:
 	@echo "Check the current freshness of the project's sources..."
-	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) run --rm dbt source freshness
+	$(DBT) source freshness
 	
 .PHONY: help
 help:
