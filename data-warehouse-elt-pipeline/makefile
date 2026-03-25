@@ -17,7 +17,7 @@ down:
 	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) down
 	
 .PHONY: delete_volumes
-delete_volumes: 
+delete-volumes: 
 	@echo "Stopping containers and deleting volumes..."
 	docker compose --env-file $(ENV_FILE) -f $(DOCKER_COMPOSE_FILE) down -v
 	
@@ -35,23 +35,27 @@ ps:
 restart: down up
 	@echo "Project restarted."
 
-dbt_debug:
+dbt-debug:
 	@echo "Show information on the current dbt environment..."
 	$(DBT) debug
 
-dbt_compile:
+dbt-compile:
 	$(DBT) compile
 
-dbt_run:
+dbt-run:
 	@echo "Compile SQL and execute against the current target..."
 	$(DBT) run
 
 run-model:
 	$(DBT) run -s $(m)
 
-dbt_source_freshness:
+dbt-source_freshness:
 	@echo "Check the current freshness of the project's sources..."
 	$(DBT) source freshness
+
+open-db:
+	@echo "Opening postgres..."
+	docker exec -it  postgres_db psql -U user -d datawarehouse
 	
 .PHONY: help
 help:
