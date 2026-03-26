@@ -46,12 +46,23 @@ dbt-run:
 	@echo "Compile SQL and execute against the current target..."
 	$(DBT) run
 
+dbt-build:
+	@echo "Compile SQL, execute and run tests against the current target..."
+	$(DBT) build
+
 run-model:
 	$(DBT) run -s $(m)
+
+build-model:
+	$(DBT) build -s $(m)
 
 dbt-source_freshness:
 	@echo "Check the current freshness of the project's sources..."
 	$(DBT) source freshness
+
+dbt-test:
+	@echo "Check the current freshness of the project's sources..."
+	$(DBT) test
 
 open-db:
 	@echo "Opening postgres..."
