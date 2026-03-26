@@ -3,8 +3,8 @@ SELECT
     event_type,
     CAST(product_id AS BIGINT) AS product_id,
     CAST(category_id AS BIGINT) AS category_id,
-    NULLIF(category_code, '') AS category_code,
-    LOWER(NULLIF(brand, '')) AS brand,
+    COALESCE(category_code, 'unknown') AS category_code,
+    LOWER(COALESCE(brand, 'no_brand')) AS brand,
     CAST(price AS NUMERIC) AS price,
     CAST(user_id AS BIGINT) AS user_id,
     user_session
