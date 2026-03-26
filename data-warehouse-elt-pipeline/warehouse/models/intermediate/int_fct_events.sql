@@ -31,15 +31,16 @@ SELECT
         'event_type',
         'product_id'
     ]) }} AS event_id,
-    {{ dbt_utils.generate_surrogate_key([ -- Found out that different users share same session name
-    'user_id',
-    'user_session'
-]) }} AS session_id,
+    {{ dbt_utils.generate_surrogate_key([
+        'user_id',
+        'user_session'
+    ]) }} AS session_id,
     user_id,
     user_session,
     event_timestamp,
     CAST(event_timestamp AS DATE) AS event_date,
     product_id,
+    category_id,
     category_code,
     brand,
     event_type,
