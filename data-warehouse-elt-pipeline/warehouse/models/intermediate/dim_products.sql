@@ -4,5 +4,5 @@ SELECT
     category_id,
     category_code,
     price
-FROM {{ ref('fct_events') }}
+FROM {{ ref('int_events') }}
 GROUP BY product_id
