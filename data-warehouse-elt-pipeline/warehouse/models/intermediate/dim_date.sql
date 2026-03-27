@@ -1,6 +1,4 @@
--- Date dimension table
-{{ config(materialized='table') }}
-
+-- Date dimension view
 WITH dates_raw AS (
     {{ dbt_utils.date_spine(
         datepart="day",
