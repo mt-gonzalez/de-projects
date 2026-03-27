@@ -17,4 +17,4 @@ SELECT
     MAX(event_date) AS session_end_date,
     (MAX(event_timestamp) - MIN(event_timestamp)) AS duration
 FROM {{ ref('int_events')}}
-GROUP BY session_id, user_id, user_session
+GROUP BY user_id, user_session

@@ -44,3 +44,30 @@ models:
       - name: purchase_count
         tests:
           - not_null
+
+  - name: int_user_daily_activity
+    description: "Users daily activity register"
+    columns:
+      - name: usr_daily_act_id
+        tests:
+          - not_null
+          - unique
+      - name: event_date
+        tests:
+          - not_null
+      - name: events_count
+        tests:
+          - not_null
+  
+  - name: dim_date
+    description: "Date Dimension Table using date_spine that provides a continuos sequence of days.
+                  It ensure no gaps exist in time-series reporting, even on dates with no transactional activity"
+  
+  - name: dim_users
+    description: "Derived from events. Users information gathered in its event logs.
+                  Information may be incosistent."
+
+  - name: dim_products
+    description: "Derived from events. Products information gathered with user activities.
+                  Attributes may be inconsistent across time."
+      
