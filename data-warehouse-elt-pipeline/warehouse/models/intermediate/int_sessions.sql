@@ -15,6 +15,6 @@ SELECT
     MAX(event_timestamp) AS session_end,
     MIN(event_date) AS session_start_date,
     MAX(event_date) AS session_end_date,
-    (MAX(event_timestamp) - MIN(event_timestamp)) AS duration
+    GREATEST(EXTRACT(EPOCH FROM(MAX(event_timestamp) - MIN(event_timestamp))), 0) AS duration
 FROM {{ ref('int_events')}}
 GROUP BY user_id, user_session
