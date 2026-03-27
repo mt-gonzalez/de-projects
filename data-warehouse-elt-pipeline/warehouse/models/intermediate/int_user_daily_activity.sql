@@ -8,9 +8,9 @@ SELECT
     user_id,
     event_date,
     count(*) AS events_count,
-    count(*) FILTER (where event_type = 'view') AS views,
-    count(*) FILTER (where event_type = 'cart') AS carts,
-    count(*) FILTER (where event_type = 'purchase') AS purchases,
+    COUNT(*) FILTER (WHERE event_type IN ('view', 'cart', 'purchase')) AS view_count,
+    COUNT(*) FILTER (WHERE event_type IN ('cart', 'purchase')) AS cart_count,
+    COUNT(*) FILTER (WHERE event_type = 'purchase') AS purchase_count,
     sum(CASE WHEN event_type = 'purchase' THEN price ELSE 0 END) AS revenue
 
 FROM {{ ref('stg_events') }}

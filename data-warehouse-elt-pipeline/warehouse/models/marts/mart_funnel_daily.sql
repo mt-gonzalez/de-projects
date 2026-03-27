@@ -3,16 +3,16 @@
 SELECT
     event_date,
     COUNT(DISTINCT user_id) AS total_visitors,
-    COUNT(DISTINCT user_id) FILTER (WHERE views > 0) AS users_viewed,
-    COUNT(DISTINCT user_id) FILTER (WHERE carts > 0) AS users_carted,
-    COUNT(DISTINCT user_id) FILTER (WHERE purchases > 0) AS users_purchased,
+    COUNT(DISTINCT user_id) FILTER (WHERE view_count > 0) AS users_viewed,
+    COUNT(DISTINCT user_id) FILTER (WHERE cart_count > 0) AS users_carted,
+    COUNT(DISTINCT user_id) FILTER (WHERE purchase_count > 0) AS users_purchased,
     ROUND(
-        COUNT(DISTINCT user_id) FILTER (WHERE carts > 0) * 100.0 / 
-        NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE views > 0), 0), 2
+        COUNT(DISTINCT user_id) FILTER (WHERE cart_count > 0) * 100.0 / 
+        NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE view_count > 0), 0), 2
     ) AS view_to_cart_pct,
     ROUND(
-        COUNT(DISTINCT user_id) FILTER (WHERE purchases > 0) * 100.0 / 
-        NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE carts > 0), 0), 2
+        COUNT(DISTINCT user_id) FILTER (WHERE purchase_count > 0) * 100.0 / 
+        NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE cart_count > 0), 0), 2
     ) AS cart_to_purchase_pct
 
 FROM {{ ref('int_user_daily_activity') }}
