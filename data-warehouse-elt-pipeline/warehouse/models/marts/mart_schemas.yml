@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: mart_funnel_daily
+    description: "Daily user-level funnel metrics showing how users progress through key stages (view, cart, purchase), 
+                  including conversion rates between steps"
+    columns:
+      - name: event_date
+        tests:
+          - not_null
+          - unique
+      - name: total_visitors
+        tests:
+          - not_null
+      - name: users_viewed
+        tests:
+          - not_null
+      - name: users_carted
+        tests:
+          - not_null
+      - name: users_purchased
+        tests:
+          - not_null
+
+  - name: mart_revenue_daily
+    description: "Daily revenue and monetization metrics, including total revenue, number of orders, average order value (AOV), 
+                  and revenue per user"
+    columns:
+      - name: event_date
+        tests:
+          - not_null
+          - unique
+      - name: revenue
+        tests:
+          - not_null
+      - name: orders
+        tests:
+          - not_null
+
+  - name: mart_product_performance
+    description: "Product-level performance metrics aggregated daily, capturing user interactions (views, carts, purchases) and revenue, 
+                  enriched with product attributes"
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+      - name: event_date
+        tests:
+          - not_null
+      - name: views
+        tests:
+          - not_null
+      - name: carts
+        tests:
+          - not_null
+      - name: purchases
+        tests:
+          - not_null
+
+  - name: mart_session_performance
+    description: "Session-level engagement and monetization metrics aggregated by session start date, including session volume, 
+                  conversion rate, duration, and revenue efficiency"
+    columns:
+      - name: session_start_date
+        tests:
+          - not_null
+          - unique
+      - name: sessions
+        tests:
+          - not_null
+      - name: sessions_with_purchase
+        tests:
+          - not_null
