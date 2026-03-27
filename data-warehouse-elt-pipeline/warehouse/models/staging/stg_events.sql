@@ -1,6 +1,6 @@
 SELECT 
     CAST(event_time AS TIMESTAMP) AS event_timestamp,
-    EXTRACT(DATE FROM event_time) AS event_date,
+    CAST(event_time AS DATE) AS event_date,
     LOWER(event_type) AS event_type,
     CAST(product_id AS BIGINT) AS product_id,
     CAST(category_id AS BIGINT) AS category_id,
