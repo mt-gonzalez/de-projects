@@ -21,7 +21,7 @@ clean_stg_events AS (
     WHERE row_number = 1
 )
 
--- It was found running the tests for this model that exists 629 duplicated rows, so first we apply deduplication to the view
+-- I found running the tests for this model that exists 629 duplicated rows, so first we apply deduplication to the view
 
 SELECT
     {{ dbt_utils.generate_surrogate_key([
@@ -40,5 +40,5 @@ SELECT
     category_code,
     brand,
     event_type,
-    price,
+    price
 FROM clean_stg_events

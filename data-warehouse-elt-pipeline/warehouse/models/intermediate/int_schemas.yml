@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: int_fct_events
+  - name: int_events
     description: "Event-level fact table for e-commerce user interactions"
     columns:
       - name: event_id
