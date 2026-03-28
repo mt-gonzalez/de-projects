@@ -1,10 +1,10 @@
-# Event-Driven E-commerce Analytics Pipeline
+# E-commerce Analytics Pipeline
 
 ## Overview
 
-This project implements an end-to-end analytics data pipeline for e-commerce event data using **Python, PostgreSQL, and dbt**. It ingests raw event logs, processes them through a layered transformation architecture, and exposes business-ready data marts for analytics and reporting.
+This project implements an end-to-end analytics data pipeline for e-commerce event data using **Docker, Python, PostgreSQL and dbt**. It ingests raw event logs from a CSV file, processes them through a layered transformation architecture, and exposes business-ready data marts for analytics and reporting.
 
-The system follows an **event-driven modeling approach**, where user behavior (events) is the primary source of truth.
+The system follows an **Kimball-style dimensional modeling approach**, where user behavior (events) is the primary source of truth.
 
 ---
 
