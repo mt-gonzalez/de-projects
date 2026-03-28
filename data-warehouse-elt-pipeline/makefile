@@ -64,9 +64,13 @@ dbt-test:
 	@echo "Check the current freshness of the project's sources..."
 	$(DBT) test
 
-open-db:
-	@echo "Opening postgres..."
-	docker exec -it  postgres_db psql -U user -d datawarehouse
+dbt-deps:
+	@echo "Installing dbt dependencies..."
+	$(DBT) deps
+
+#open-db:
+#	@echo "Opening postgres..."
+#	docker exec -it  postgres_db psql -U <POSTGRES_USER> -d <POSTGRES_DB>
 	
 .PHONY: help
 help:
